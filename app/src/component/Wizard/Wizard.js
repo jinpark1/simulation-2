@@ -66,6 +66,13 @@ class Wizard extends Component {
 
 
     render(){
+        let newHouse = {
+            name: this.state.name,
+            address: this.state.address,
+            city: this.state.city,
+            state: this.state.state,
+            zip: this.state.zip
+        }
         return(
             <div>
                 <Link to='/'><button>Cancel</button></Link>
@@ -77,6 +84,7 @@ class Wizard extends Component {
                     <div>Zip<input onChange={ e => this.updateZip(e.target.value) } /></div>
                 </div>
                 <div>
+                    <button><Link to={{pathname: '/Wizard/WizardStepTwo', state: newHouse}}>Next Step</Link></button>
                     <button onClick={ this.addHouse }>Complete</button>
                 </div>
             </div>

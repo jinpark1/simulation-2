@@ -15,8 +15,8 @@ class App extends Component {
     return (
       <div className="App">
         <Header />
-        <Link to='/'>Dashboard</Link>
-        <Link to='/Wizard'>Wizard</Link>
+        {/* <Link to='/'>Dashboard</Link>
+        <Link to='/Wizard'>Wizard</Link> */}
         <House />
 
         {routes}

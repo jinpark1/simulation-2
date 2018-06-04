@@ -1,0 +1,9 @@
+.header {
+    height: 3vw;
+    background-color: #519872;
+    color: black;
+    font-size: 25px;
+    font-weight: 900; 
+    display: flex;
+    padding: 0 50px;
+}

@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import './House.css';
 
 class House extends Component {
     
@@ -17,10 +18,10 @@ class House extends Component {
                         <p>City: {item.city}</p>
                         <p>State: {item.state}</p>
                         <p>Zip: {item.zip}</p>
-                        <img src={item.img} alt=''/>
+                        <img className="house-img" src={item.img} alt=''/>
                         <p>Mortgage: {item.mortgage}</p>
                         <p>Rent: {item.rent}</p>
-                        <button onClick={this.props.delete}>Delete</button>
+                        <button onClick={ () => this.props.delete(item.id) }>Delete</button>
                     </div> 
                : null}
             </div>
