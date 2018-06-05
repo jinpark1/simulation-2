@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import axios from 'axios';
 import './Wizard.css';
+import { connect } from 'react-redux';
+import { updateWizardStep1 } from '../../ducks/reducer';
 
 class Wizard extends Component {
     constructor() {
@@ -107,4 +109,9 @@ class Wizard extends Component {
     }
 }
 
-export default Wizard;
+const mapStateToProps = state => {
+    return state;
+}
+
+
+export default connect(mapStateToProps)(Wizard);
