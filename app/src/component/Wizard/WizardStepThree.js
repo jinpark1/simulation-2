@@ -2,32 +2,22 @@ import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import axios from 'axios';
 import './Wizard.css';
+import { connect } from 'react-redux';
+import { updateWizardStep3 } from '../../ducks/reducer';
 
 class WizardStepThree extends Component {
     constructor() {
         super()
 
-        this.state = {
-            mortgage: '',
-            rent: ''
-
-        };
-        
-        this.addHouse = this.addHouse.bind( this );
     };
 
 
-    updateImg( val ){
-        this.setState({
-            img: val
-        });
-    };
 
     addHouse(){
-        console.log(this.props)
-        console.log(this.props.location.state)
+        // console.log('addHouse---------', this.props)
+        // console.log(this.props.location.state)
 
-        let house = this.props.location.state; 
+        let house = this.props;
         let newHouse = {
             name: house.name,
             address: house.address,
@@ -35,54 +25,36 @@ class WizardStepThree extends Component {
             state: house.state,
             zip: house.zip,
             img: house.img,
-            mortgage: this.state.mortgage,
-            rent: this.state.rent
-        }
+            mortgage: house.mortgage,
+            rent: house.rent
+        };
 
         console.log('newHouse-------------', newHouse)
 
         axios.post('/api/house', newHouse).then( res => {
             this.setState({
                 house: res.data
+                
             })
         })
     }
 
-    updateMortgage(v){
-        this.setState({
-            mortgage: v
-        })
-    }
 
-    updateRent(v){
-        this.setState({
-            rent: v
-        })
-    }
 
 
     render(){
-        console.log(this.props)
-        let house = this.props.location.state; 
-        let newHouse = {
-            name: house.name,
-            address: house.address,
-            city: house.city,
-            state: house.state,
-            zip: house.zip,
-            img: house.img
-        }
+        console.log('WizardStepThree--------', this.props)
 
         return(
             <div>
                 <div className="form">
-                    <div>Recommended Rent: ${1.5 * this.state.mortgage}</div>
+                    <div>Recommended Rent: ${1.5 * this.props.mortgage}</div>
                     <Link to='/'><button>Cancel</button></Link>
-                    <div>Monthly Mortgage Amount<input onChange={ e => this.updateMortgage(e.target.value) } /></div>
-                    <div>Desired Monthly Rent<input onChange={ e => this.updateRent(e.target.value) } /></div>
+                    <div>Monthly Mortgage Amount<input onChange={ e => this.props.dispatch(updateWizardStep3('mortgage', e.target.value)) } /></div>
+                    <div>Desired Monthly Rent<input onChange={ e => this.props.dispatch(updateWizardStep3('rent', e.target.value)) } /></div>
                     <div>
-                        <button><Link to={{pathname: '/Wizard/WizardStepTwo', previous: newHouse}}>Previous Step</Link></button>
-                        <button onClick={ this.addHouse }><Link to='/'>Complete</Link></button>
+                        <button><Link to={{pathname:'/Wizard/WizardStepTwo'}}>Previous Step</Link></button>
+                        <button onClick={() => this.addHouse() }><Link to='/'>Complete</Link></button>
                     </div>
                 </div>
             </div>
@@ -90,4 +62,9 @@ class WizardStepThree extends Component {
     }
 }
 
-export default WizardStepThree;
+
+const mapStateToProps = state => {
+    return state;
+}
+
+export default connect(mapStateToProps)(WizardStepThree);

@@ -10,7 +10,6 @@ module.exports = {
     create: ( req, res ) => {
         const dbInstance = req.app.get('db');
         const data = req.body;
-
         dbInstance.create_house({ 
             name: data.name, 
             address: data.address, 

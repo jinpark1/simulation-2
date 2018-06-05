@@ -2,72 +2,25 @@ import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import axios from 'axios';
 import './Wizard.css';
+import { updateWizardStep2 } from '../../ducks/reducer';
+import { connect } from 'react-redux';
 
 class WizardStepTwo extends Component {
     constructor() {
         super()
-
-        this.state = {
-            img: '',
-        };
-        
-        // this.addHouse = this.addHouse.bind( this );
     };
-
-
-    updateImg( val ){
-        this.setState({
-            img: val
-        });
-    };
-
 
     render(){
-        console.log(this.props)
-        // let house = this.props.location.state;
-        // let newHouse = {
-        //     name: house.name,
-        //     address: house.address,
-        //     city: house.city,
-        //     state: house.state,
-        //     zip: house.zip,
-        //     img: this.state.img
-        // }
-
-        let house;
-        let newHouse;
-        {this.props.location.state ? 
-                newHouse = {
-                name: this.props.location.state.name,
-                address: this.props.location.state.address,
-                city: this.props.location.state.city,
-                state: this.props.location.state.state,
-                zip: this.props.location.state.zip,
-                img: this.state.img
-            }
-             : null;}
-        
-        let previous;    
-        {this.props.location.previous ?
-            newHouse = {
-                name: this.props.location.previous.name,
-                address: this.props.location.previous.address,
-                city: this.props.location.previous.city,
-                state: this.props.location.previous.state,
-                zip: this.props.location.previous.zip,
-                img: this.props.location.previous.img
-            }
-            : null;}
-
+        console.log('WizardStepTwo---------', this.props)
 
         return(
             <div>
                 <div className="form">
-                    <div>IMAGE URL<input onChange={ e => this.updateImg(e.target.value) } value={this.props.location.previous && this.props.location.previous.img}/></div>
+                    <div>IMAGE URL<input onChange={ e => this.props.dispatch(updateWizardStep2('img', e.target.value)) } value={this.props && this.props.img}/></div>
                     <Link to='/'><button>Cancel</button></Link>
                     <div>
-                    <button><Link to={{pathname: '/Wizard/', previous: newHouse}}>Previous Step</Link></button>
-                    <button><Link to={{pathname: '/Wizard/WizardStepThree', state: newHouse}}>Next Step</Link></button>
+                    <button><Link to={{pathname: '/Wizard/'}}>Previous Step</Link></button>
+                    <button><Link to={{pathname: '/Wizard/WizardStepThree'}}>Next Step</Link></button>
                     </div>
                 </div>
             </div>
@@ -75,4 +28,9 @@ class WizardStepTwo extends Component {
     }
 }
 
-export default WizardStepTwo;
+
+const mapStateToProps = state => {
+    return state;
+}
+
+export default connect(mapStateToProps)(WizardStepTwo);
