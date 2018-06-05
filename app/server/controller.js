@@ -16,7 +16,10 @@ module.exports = {
             address: data.address, 
             city: data.city, 
             state: data.state, 
-            zip: data.zip 
+            zip: data.zip,
+            img: data.img,
+            mortgage: data.mortgage,
+            rent: data.rent
         }).then( () => res.status(200).send() )
         .catch( () => res.status(500).send() );
     },

@@ -73,15 +73,30 @@ class Wizard extends Component {
             state: this.state.state,
             zip: this.state.zip
         }
+
+        console.log(this.props.location.previous)
+
+        let previous;    
+        {this.props.location.previous ?
+            newHouse = {
+                name: this.props.location.previous.name,
+                address: this.props.location.previous.address,
+                city: this.props.location.previous.city,
+                state: this.props.location.previous.state,
+                zip: this.props.location.previous.zip,
+            }
+            : null;}
+        
+
         return(
             <div>
                 <Link to='/'><button>Cancel</button></Link>
                 <div className="Form">
-                    <div>Property Name<input onChange={ e => this.updateName(e.target.value) } /></div>
-                    <div>Address<input onChange={ e => this.updateAddress(e.target.value) } /></div>
-                    <div>City<input onChange={ e => this.updateCity(e.target.value) } /></div>
-                    <div>State<input onChange={ e => this.updateState(e.target.value) } /></div>
-                    <div>Zip<input onChange={ e => this.updateZip(e.target.value) } /></div>
+                    <div>Property Name<input onChange={ e => this.updateName(e.target.value) } value={this.props.location.previous && this.props.location.previous.name} /></div>
+                    <div>Address<input onChange={ e => this.updateAddress(e.target.value) } value={this.props.location.previous && this.props.location.previous.address}/></div>
+                    <div>City<input onChange={ e => this.updateCity(e.target.value) } value={this.props.location.previous && this.props.location.previous.city}/></div>
+                    <div>State<input onChange={ e => this.updateState(e.target.value) } value={this.props.location.previous && this.props.location.previous.state}/></div>
+                    <div>Zip<input onChange={ e => this.updateZip(e.target.value) } value={this.props.location.previous && this.props.location.previous.zip}/></div>
                 </div>
                 <div>
                     <button><Link to={{pathname: '/Wizard/WizardStepTwo', state: newHouse}}>Next Step</Link></button>

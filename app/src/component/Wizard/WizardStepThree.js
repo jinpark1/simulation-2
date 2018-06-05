@@ -7,7 +7,9 @@ class WizardStepThree extends Component {
         super()
 
         this.state = {
-            img: '',
+            mortgage: '',
+            rent: ''
+
         };
         
         this.addHouse = this.addHouse.bind( this );
@@ -21,13 +23,22 @@ class WizardStepThree extends Component {
     };
 
     addHouse(){
+        console.log(this.props)
+        console.log(this.props.location.state)
+
+        let house = this.props.location.state; 
         let newHouse = {
-            name: this.state.name,
-            address: this.state.address,
-            city: this.state.city,
-            state: this.state.state,
-            zip: this.state.zip
+            name: house.name,
+            address: house.address,
+            city: house.city,
+            state: house.state,
+            zip: house.zip,
+            img: house.img,
+            mortgage: this.state.mortgage,
+            rent: this.state.rent
         }
+
+        console.log('newHouse-------------', newHouse)
 
         axios.post('/api/house', newHouse).then( res => {
             this.setState({
@@ -36,20 +47,42 @@ class WizardStepThree extends Component {
         })
     }
 
+    updateMortgage(v){
+        this.setState({
+            mortgage: v
+        })
+    }
+
+    updateRent(v){
+        this.setState({
+            rent: v
+        })
+    }
+
 
     render(){
         console.log(this.props)
+        let house = this.props.location.state; 
+        let newHouse = {
+            name: house.name,
+            address: house.address,
+            city: house.city,
+            state: house.state,
+            zip: house.zip,
+            img: house.img
+        }
+
         return(
             <div>
                 <Link to='/'><button>Cancel</button></Link>
                 <div className="Form">
-                    <div>Recommended Rent: ${0}</div>
-                    <div>Monthly Mortgage Amount<input onChange={ e => this.updateName(e.target.value) } /></div>
-                    <div>Desired Monthly Rent<input onChange={ e => this.updateImg(e.target.value) } /></div>
+                    <div>Recommended Rent: ${1.5 * this.state.mortgage}</div>
+                    <div>Monthly Mortgage Amount<input onChange={ e => this.updateMortgage(e.target.value) } /></div>
+                    <div>Desired Monthly Rent<input onChange={ e => this.updateRent(e.target.value) } /></div>
                 </div>
                 <div>
-                    <button><Link to='/Wizard/WizardStepTwo'>Previous Step</Link></button>
-                    <button onClick={ this.addHouse }>Complete</button>
+                    <button><Link to={{pathname: '/Wizard/WizardStepTwo', previous: newHouse}}>Previous Step</Link></button>
+                    <button onClick={ this.addHouse }><Link to='/'>Complete</Link></button>
                 </div>
             </div>
         )
