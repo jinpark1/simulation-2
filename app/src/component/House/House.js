@@ -11,17 +11,17 @@ class House extends Component {
         return(
             <div>
                {item ? // Reminder: Ternary to wait for the this.props.item to render.
-                    <div>
+                    <div className="house-container">
                         {/* Reminder: Passed in props from Dashboard Component. */}
+                        <img className="house-img" src={item.img} alt=''/>
+                        <button onClick={ () => this.props.delete(item.id) }>Delete</button>
                         <p>Property Name: {item.name}</p>
                         <p>Address: {item.address}</p>
                         <p>City: {item.city}</p>
                         <p>State: {item.state}</p>
                         <p>Zip: {item.zip}</p>
-                        <img className="house-img" src={item.img} alt=''/>
                         <p>Mortgage: {item.mortgage}</p>
                         <p>Rent: {item.rent}</p>
-                        <button onClick={ () => this.props.delete(item.id) }>Delete</button>
                     </div> 
                : null}
             </div>

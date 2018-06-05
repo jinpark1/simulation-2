@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import axios from 'axios';
+import './Wizard.css';
 
 class WizardStepThree extends Component {
     constructor() {
@@ -74,15 +75,15 @@ class WizardStepThree extends Component {
 
         return(
             <div>
-                <Link to='/'><button>Cancel</button></Link>
-                <div className="Form">
+                <div className="form">
                     <div>Recommended Rent: ${1.5 * this.state.mortgage}</div>
+                    <Link to='/'><button>Cancel</button></Link>
                     <div>Monthly Mortgage Amount<input onChange={ e => this.updateMortgage(e.target.value) } /></div>
                     <div>Desired Monthly Rent<input onChange={ e => this.updateRent(e.target.value) } /></div>
-                </div>
-                <div>
-                    <button><Link to={{pathname: '/Wizard/WizardStepTwo', previous: newHouse}}>Previous Step</Link></button>
-                    <button onClick={ this.addHouse }><Link to='/'>Complete</Link></button>
+                    <div>
+                        <button><Link to={{pathname: '/Wizard/WizardStepTwo', previous: newHouse}}>Previous Step</Link></button>
+                        <button onClick={ this.addHouse }><Link to='/'>Complete</Link></button>
+                    </div>
                 </div>
             </div>
         )

@@ -2,7 +2,6 @@
     background-color: #e5f4ec;
     width: 50vw;
     margin: 0 auto;
-    
 }
 
 .dashboard-head {
@@ -14,5 +13,21 @@
 
 .dashboard-button {
    margin: 0 50px;
+   height: 30px;
+   width: 150px;
+   background-color: green;
+   border: none;
 }
 
+.dashboard-title {
+    color: green;
+    font-size: 25px;
+    margin: 0 50px;
+}
+
+.dashboard-head-container {
+    display: flex;
+    margin: 0px 5px;
+    padding: 10px 0px;
+    justify-content: space-between;
+}

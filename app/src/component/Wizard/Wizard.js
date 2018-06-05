@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import axios from 'axios';
+import './Wizard.css';
 
 class Wizard extends Component {
     constructor() {
@@ -90,17 +91,16 @@ class Wizard extends Component {
 
         return(
             <div>
-                <Link to='/'><button>Cancel</button></Link>
-                <div className="Form">
+                <div className="form">
+                    <span>Add New Listing</span><span><Link to='/'><button>Cancel</button></Link></span>
                     <div>Property Name<input onChange={ e => this.updateName(e.target.value) } value={this.props.location.previous && this.props.location.previous.name} /></div>
                     <div>Address<input onChange={ e => this.updateAddress(e.target.value) } value={this.props.location.previous && this.props.location.previous.address}/></div>
                     <div>City<input onChange={ e => this.updateCity(e.target.value) } value={this.props.location.previous && this.props.location.previous.city}/></div>
                     <div>State<input onChange={ e => this.updateState(e.target.value) } value={this.props.location.previous && this.props.location.previous.state}/></div>
                     <div>Zip<input onChange={ e => this.updateZip(e.target.value) } value={this.props.location.previous && this.props.location.previous.zip}/></div>
-                </div>
-                <div>
-                    <button><Link to={{pathname: '/Wizard/WizardStepTwo', state: newHouse}}>Next Step</Link></button>
-                    <button onClick={ this.addHouse }>Complete</button>
+                    <div>
+                        <button><Link to={{pathname: '/Wizard/WizardStepTwo', state: newHouse}}>Next Step</Link></button>
+                    </div>
                 </div>
             </div>
         )

@@ -80,7 +80,7 @@ class Dashboard extends Component {
         return(
             <div className="dashboard">
                 <div className="dashboard-head-container">
-                     <span className="dashboard-title">Home Listings</span>
+                     <span className="dashboard-title">Dashboard</span>
                      <Link to='/Wizard'><button className="dashboard-button">Add New Property</button></Link>
                 </div>
                 {house}

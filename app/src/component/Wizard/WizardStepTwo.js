@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import axios from 'axios';
+import './Wizard.css';
 
 class WizardStepTwo extends Component {
     constructor() {
@@ -61,13 +62,13 @@ class WizardStepTwo extends Component {
 
         return(
             <div>
-                <Link to='/'><button>Cancel</button></Link>
-                <div className="Form">
+                <div className="form">
                     <div>IMAGE URL<input onChange={ e => this.updateImg(e.target.value) } value={this.props.location.previous && this.props.location.previous.img}/></div>
-                </div>
-                <div>
+                    <Link to='/'><button>Cancel</button></Link>
+                    <div>
                     <button><Link to={{pathname: '/Wizard/', previous: newHouse}}>Previous Step</Link></button>
                     <button><Link to={{pathname: '/Wizard/WizardStepThree', state: newHouse}}>Next Step</Link></button>
+                    </div>
                 </div>
             </div>
         )

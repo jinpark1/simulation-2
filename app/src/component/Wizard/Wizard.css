@@ -1,0 +1,23 @@
+.form {
+    background-color: #e5f4ec;
+    width: 50vw;
+    margin: 0 auto;
+    height: 100vw;
+}
+
+.dashboard-head {
+    font-size: 25px;
+    color: #519872;
+    padding: 0 50px;
+}
+
+.form span{
+    font-weight: 800;
+    margin: 0px 50px;
+}
+
+.form div{
+    font-weight: 700;
+    margin: 15px;
+    display: inline-block;
+}
